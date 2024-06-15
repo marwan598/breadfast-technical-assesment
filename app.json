@@ -2,14 +2,15 @@
   "expo": {
     "name": "breadfast-technical-assesment",
     "slug": "breadfast-technical-assesment",
+    "scheme": "breadfast-technical-assesment",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "assets/splash.jpeg",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#edffef"
     },
     "ios": {
       "supportsTablet": true
@@ -22,6 +23,9 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      "expo-router"
+    ]
   }
 }
