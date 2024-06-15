@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { StatusBar } from "expo-status-bar";
-import { ActivityIndicator, ScrollView, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import Avatar from "../components/Avatar";
-import Card from "../components/Card";
-import { useQuery, gql } from "@apollo/client";
+import React, { useEffect, useState } from 'react';
+import { StatusBar } from 'expo-status-bar';
+import { ActivityIndicator, ScrollView, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import Card from '../components/Card';
+import { useQuery, gql } from '@apollo/client';
 
 interface User {
   __typename: string;
@@ -55,12 +54,12 @@ export default function App() {
   const {
     data: postsData,
     loading: postsLoading,
-    error: postsError,
+    error: postsError
   } = useQuery(GET_POSTS);
   const {
     data: usersData,
     loading: usersLoading,
-    error: usersError,
+    error: usersError
   } = useQuery(GET_USERS);
 
   if (postsError) {
@@ -73,8 +72,8 @@ export default function App() {
 
   useEffect(() => {
     if (usersData && postsData) {
-      const users: User[] = usersData["users"]["nodes"];
-      const posts: Post[] = postsData["posts"]["nodes"];
+      const users: User[] = usersData.users.nodes;
+      const postsArr: Post[] = postsData.posts.nodes;
       // Step 1: Create a dictionary from the users array
       const userDictionary: Record<number, string> = users.reduce(
         (acc: any, user) => {
@@ -84,33 +83,32 @@ export default function App() {
         {}
       );
       // Step 2: Map posts to include user names
-      const postsWithUserNames: PostWithUserName[] = posts.map((post) => ({
+      const postsWithUserNames: PostWithUserName[] = postsArr.map((post) => ({
         ...post,
-        userName: userDictionary[post.userId] || "Unknown",
+        userName: userDictionary[post.userId] || 'Unknown'
       }));
       setPosts(postsWithUserNames);
     }
   }, [usersData, postsData]);
 
-  return usersLoading ? (
+  return usersLoading || postsLoading ? (
     <ActivityIndicator
       color="black"
       size={60}
-      className="flex-1 justify-center items-center"
-      style={{ height: "100%", backgroundColor: "#edffef" }}
+      className="flex-1 justify-center items-center h-full bg-[#edffef]"
     />
   ) : (
     <SafeAreaView className="bg-[#edffef] h-full">
       <ScrollView>
         <View className="w-full justify-center items-center h-full mt-4 mb-12">
-          {posts.map((value, index, arr) => {
+          {posts.map((value, index) => {
             return (
               <Card
-                key={posts[index]["id"]}
-                userName={posts[index]["userName"]}
-                userId={posts[index]["userId"]}
-                title={posts[index]["title"]}
-                content={posts[index]["body"]}
+                key={posts[index].id}
+                userName={posts[index].userName}
+                userId={posts[index].userId}
+                title={posts[index].title}
+                content={posts[index].body}
               />
             );
           })}

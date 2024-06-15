@@ -1,7 +1,7 @@
-import { View, Text } from "react-native";
-import React from "react";
-import Logo from "../constants/logo";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { View, Text } from 'react-native';
+import React from 'react';
+import Logo from '../constants/logo';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Header = () => (
   <SafeAreaView
