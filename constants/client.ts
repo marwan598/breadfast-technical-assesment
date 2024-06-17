@@ -1,9 +1,46 @@
-import { ApolloClient, InMemoryCache } from '@apollo/client';
+import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 const BASE_URL = 'https://gorest.co.in/public/v2/graphql';
 
-const client = new ApolloClient({
+export const client = new ApolloClient({
   uri: BASE_URL,
   cache: new InMemoryCache()
 });
 
-export default client;
+export const GET_POSTS = gql`
+  query {
+    posts {
+      totalCount
+      nodes {
+        id
+        userId
+        title
+        body
+      }
+    }
+  }
+`;
+
+export const GET_USERS = gql`
+  query {
+    users {
+      totalCount
+      nodes {
+        id
+        name
+      }
+    }
+  }
+`;
+export const GET_COMMENTS = gql`
+  query {
+    comments {
+      totalCount
+      nodes {
+        id
+        postId
+        name
+        body
+      }
+    }
+  }
+`;

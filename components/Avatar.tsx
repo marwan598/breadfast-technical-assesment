@@ -13,7 +13,12 @@ const Avatar = ({ imageStyle, userId }: Props) => {
     randomizeIds: true,
     seed: userId,
     backgroundColor: ['b6e3f4', 'c0aede', 'd1d4f9', 'ffd5dc', 'ffdfbf'],
-    radius: 50
+    radius: 50,
+    mouth: ['smile', 'laughing', 'smirk'],
+    baseColor: ['f9c9b6'],
+    glassesProbability: 50,
+    hairColor: ['000000', '6bd9e9', '9287ff'],
+    backgroundType: ['gradientLinear', 'solid']
   });
 
   const svg = avatar.toString();

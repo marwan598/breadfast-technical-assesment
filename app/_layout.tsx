@@ -2,9 +2,9 @@ import React from 'react';
 import { useEffect } from 'react';
 import { SplashScreen, Stack } from 'expo-router';
 import { useFonts } from 'expo-font';
-import Header from '../components/Header';
+import { BackButton, Header } from '../components/Header';
 import { ApolloProvider } from '@apollo/client';
-import client from '../constants/client';
+import { client } from '../constants/client';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -36,11 +36,22 @@ const RootLayout = () => {
     <ApolloProvider client={client}>
       <Stack
         screenOptions={{
-          header: Header,
-          headerTransparent: true
+          headerShadowVisible: false,
+          headerStyle: {
+            backgroundColor: 'rgb(249 250 251)'
+          },
+          headerTitleAlign: 'center',
+          headerBackVisible: false
         }}
       >
-        <Stack.Screen name="index" />
+        <Stack.Screen name="index" options={{ headerTitle: () => Header() }} />
+        <Stack.Screen
+          name="post_details"
+          options={{
+            headerTitle: () => Header(),
+            headerLeft: () => BackButton()
+          }}
+        />
       </Stack>
     </ApolloProvider>
   );
