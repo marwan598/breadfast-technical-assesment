@@ -32,11 +32,8 @@ const Card = ({
         className={`bg-white  w-[43vh] justify-center p-4 mt-3 ${contentNumberOfLines ? 'rounded-2xl shadow-sm shadow-slate-300' : 'rounded-t-2xl'}`}
       >
         {/* Profile Name and avatar */}
-        <View className="items-center flex-row">
-          <Avatar
-            imageStyle="w-12 h-12 rounded-full mr-4"
-            userId={userId.toString()}
-          />
+        <View className="items-center flex-row mb-4">
+          <Avatar imageStyle="w-12 h-12 mr-2" userId={userId.toString()} />
           <Text className="text-md font-fbold text-black ">{userName}</Text>
         </View>
 
@@ -46,9 +43,9 @@ const Card = ({
         </View>
 
         {/* Content */}
-        <View className="items-start mb-2">
+        <View className="items-start mb-4">
           <Text
-            className="text-base text-black text-left font-pregular"
+            className="text-base text-[#3d3d3d] text-left font-pregular"
             numberOfLines={contentNumberOfLines}
           >
             {content}

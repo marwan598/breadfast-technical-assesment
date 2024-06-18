@@ -31,9 +31,6 @@ const Comment = ({ body, userId, userName }: Props) => {
           </Text>
         </View>
       </View>
-      <View className="w-full items-center">
-        <Divider />
-      </View>
     </>
   );
 };

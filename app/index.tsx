@@ -65,10 +65,7 @@ export default function App() {
     <View className="bg-gray-50 h-full">
       <ScrollView
         refreshControl={
-          <RefreshControl
-            refreshing={postsLoading}
-            onRefresh={() => postsRefetch()}
-          />
+          <RefreshControl refreshing={postsLoading} onRefresh={postsRefetch} />
         }
       >
         <View className="w-full justify-center items-center h-full mb-12">

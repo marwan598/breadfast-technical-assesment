@@ -6,6 +6,7 @@ import Comment from '../components/Comment';
 import { useQuery } from '@apollo/client';
 import { GET_COMMENTS } from '../constants/client';
 import { IComment } from '../constants/constants';
+import Divider from '../components/Divider';
 
 const PostDetails = () => {
   const params = useLocalSearchParams();
@@ -69,12 +70,19 @@ const PostDetails = () => {
             </Text>
           </View>
           {comments.map((comment) => (
-            <Comment
-              key={comment.id}
-              body={comment.body}
-              userId={comment.id.toString()}
-              userName={comment.name}
-            />
+            <>
+              <Comment
+                key={comment.id}
+                body={comment.body}
+                userId={comment.id.toString()}
+                userName={comment.name}
+              />
+              {comments.indexOf(comment) === comments.length - 1 ? null : (
+                <View className="w-full items-center">
+                  <Divider />
+                </View>
+              )}
+            </>
           ))}
         </ScrollView>
       </View>
