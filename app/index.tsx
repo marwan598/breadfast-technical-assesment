@@ -4,6 +4,7 @@ import {
   ActivityIndicator,
   RefreshControl,
   ScrollView,
+  TouchableNativeFeedback,
   View
 } from 'react-native';
 import Card from '../components/Card';
@@ -12,7 +13,7 @@ import { GET_POSTS, GET_USERS } from '../constants/client';
 import { router } from 'expo-router';
 import { Post, PostWithUserName, User } from '../constants/constants';
 
-export default function Index() {
+const Index = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const {
     data: postsData,
@@ -71,7 +72,7 @@ export default function Index() {
         <View className="w-full justify-center items-center h-full mb-12">
           {posts.map((value, index) => {
             return (
-              <Card
+              <TouchableNativeFeedback
                 key={posts[index].id}
                 onPress={() =>
                   router.push({
@@ -79,12 +80,21 @@ export default function Index() {
                     params: { ...posts[index] }
                   })
                 }
-                userName={posts[index].userName}
-                userId={posts[index].userId}
-                title={posts[index].title}
-                content={posts[index].body}
-                contentNumberOfLines={2}
-              />
+              >
+                <Card
+                  onPress={() =>
+                    router.push({
+                      pathname: '/post_details',
+                      params: { ...posts[index] }
+                    })
+                  }
+                  userName={posts[index].userName}
+                  userId={posts[index].userId}
+                  title={posts[index].title}
+                  content={posts[index].body}
+                  contentNumberOfLines={2}
+                />
+              </TouchableNativeFeedback>
             );
           })}
         </View>
@@ -92,4 +102,6 @@ export default function Index() {
       <StatusBar style="dark" />
     </View>
   );
-}
+};
+
+export default Index;
