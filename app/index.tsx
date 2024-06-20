@@ -12,7 +12,7 @@ import { GET_POSTS, GET_USERS } from '../constants/client';
 import { router } from 'expo-router';
 import { Post, PostWithUserName, User } from '../constants/constants';
 
-export default function App() {
+export default function Index() {
   const [posts, setPosts] = useState<Post[]>([]);
   const {
     data: postsData,
