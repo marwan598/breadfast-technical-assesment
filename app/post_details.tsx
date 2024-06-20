@@ -70,9 +70,8 @@ const PostDetails = () => {
             </Text>
           </View>
           {comments.map((comment) => (
-            <>
+            <View key={comment.id}>
               <Comment
-                key={comment.id}
                 body={comment.body}
                 userId={comment.id.toString()}
                 userName={comment.name}
@@ -82,7 +81,7 @@ const PostDetails = () => {
                   <Divider />
                 </View>
               )}
-            </>
+            </View>
           ))}
         </ScrollView>
       </View>
